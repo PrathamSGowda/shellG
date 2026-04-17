@@ -5,22 +5,24 @@ int main()
 { 
     while(1) // keeps the shell running (REPL)
     {
-/*
-    printing a prompt for shell
-*/
-    printf("$ ");
 
-    char ch[100];
+    printf("$ "); // prompt for shell
+
+    char ch[1024];
     scanf(" %[^\n]s",ch);
-/*
-    implementing exit from the loop
-*/
-    if (strcmp(ch, "exit") == 0)
+
+    if (strcmp(ch, "exit") == 0)  // exit command
             break;
+
 /*
-    printing error messages for invalid commands
+    Command : echo
+    prints its arguments and adds a new line character
+    at the end
 */
-    printf("%s: command not found\n", ch);
+    else if (strncmp(ch,"echo ",5) == 0)
+        printf("%s\n",ch+5);
+    else
+        printf("%s: command not found\n",ch);
     }
 
     return 0;
