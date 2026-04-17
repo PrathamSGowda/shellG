@@ -21,6 +21,23 @@ int main()
 */
     else if (strncmp(ch,"echo ",5) == 0)
         printf("%s\n",ch+5);
+
+/*
+    Command : type
+    determines what category the command falls under
+*/
+    else if (strncmp(ch,"type ",5) == 0)
+        {
+            char *cmd = ch+5;
+            if (strcmp(cmd,"exit") == 0 || strcmp(cmd,"echo") == 0 ||
+                strcmp(cmd,"type") == 0)
+                {
+                printf("%s is a built-in command in shellG\n",cmd);
+                }
+            else
+                printf("%s: command not found\n",cmd);
+        }
+
     else
         printf("%s: command not found\n",ch);
     }
