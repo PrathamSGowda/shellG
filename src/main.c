@@ -25,6 +25,11 @@ int main()
         run_type(ch);
     }
 
+    else if (strcmp(ch,"pwd") == 0)
+    {
+        run_pwd(ch);
+    }
+
     else
         printf("%s: command not found\n",ch);
     }

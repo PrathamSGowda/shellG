@@ -65,3 +65,15 @@ void run_type(char *ch)
     
     printf("%s: command not found\n",cmd);
 }
+/*
+    Command : pwd
+    prints the working directory
+*/
+void run_pwd()
+{
+    char wd[1024];
+    if(getcwd(wd,sizeof(wd)) != NULL)
+    {
+        printf("%s\n",wd);
+    }
+}
