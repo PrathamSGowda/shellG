@@ -7,7 +7,7 @@ int main()
     while(1) // keeps the shell running (REPL)
     {
 
-    printf("$ "); // prompt for shell
+    printf("[shellG] "); // prompt for shell
 
     char ch[1024];
     scanf(" %[^\n]s",ch);
@@ -28,6 +28,11 @@ int main()
     else if (strcmp(ch,"pwd") == 0)
     {
         run_pwd(ch);
+    }
+
+    else if (strncmp(ch,"cd ",3) == 0)
+    {
+        run_cd(ch);
     }
 
     else

@@ -65,6 +65,7 @@ void run_type(char *ch)
     
     printf("%s: command not found\n",cmd);
 }
+
 /*
     Command : pwd
     prints the working directory
@@ -77,3 +78,24 @@ void run_pwd()
         printf("%s\n",wd);
     }
 }
+
+/*
+    Command : cd
+    this command can be used to change directory
+*/
+void run_cd(char *cmd)
+{
+    char *path = cmd + 3;
+    if ((path[0] >= 'A' && path[0] <= 'Z' && path[1] == ':') || path[0] == '\\')
+    {
+        if (chdir(path) != 0)
+        {
+            printf("cd: %s: No such file or directory\n", path);
+            return;
+        }
+    }
+    else
+    {
+        printf("cd: only absolute paths supported\n");
+    }
+}     
