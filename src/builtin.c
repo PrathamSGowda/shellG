@@ -86,6 +86,7 @@ void run_pwd()
 void run_cd(char *cmd)
 {
     char *path = cmd + 3;
+    // absolute path check
     if ((path[0] >= 'A' && path[0] <= 'Z' && path[1] == ':') || path[0] == '\\')
     {
         if (chdir(path) != 0)
@@ -94,8 +95,21 @@ void run_cd(char *cmd)
             return;
         }
     }
-    else
+    // relative path checks
+    else if (path[0] == '.')
     {
-        printf("cd: only absolute paths supported\n");
+        if (chdir(path) != 0)
+        {
+            printf("cd: %s: No such file or directory\n", path);
+            return;
+        }
+    }
+    else if (path[0] == '.' && path[1] == '.')
+    {
+        if (chdir(path) != 0)
+        {
+            printf("cd: %s: No such file or directory\n", path);
+            return;
+        }
     }
 }     
