@@ -112,4 +112,13 @@ void run_cd(char *cmd)
             return;
         }
     }
+    // home directory check
+    else if (path[0] == '~')
+    {
+        if (chdir(getenv("USERPROFILE")) != 0)
+        {
+            printf("cd: %s: Home directory not found\n", path);
+            return;
+        }
+    }
 }     
