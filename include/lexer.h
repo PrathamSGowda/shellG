@@ -5,6 +5,7 @@
 /*  By: Pratham <prathampsg2007@gmail.com>   */                               
 /*                                           */
 /*  Created: 02/06/2026 by Pratham           */
+/*  Updated: 03/06/2026 by Pratham           */
 /*                                           */
 /*********************************************/
 
@@ -12,17 +13,20 @@
 #define LEXER_H
 #include <stddef.h>
 
-typedef enum {
+typedef enum TokenType
+{
     TOKEN_WORD,
     TOKEN_END,
 }TokenType;
 
-typedef struct {
+typedef struct TokenData
+{
     TokenType type;
     char *val;
 }TokenData;
 
-typedef struct {
+typedef struct Lexer
+{
     char *start;
     char *cur;
     TokenData *tokens;
