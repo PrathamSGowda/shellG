@@ -26,6 +26,28 @@ int lex(Lexer *lexer)
         if(*lexer->cur == '\0')
             break;
         lexer->start = lexer->cur;
+
+        if (*lexer->cur == '\'')    // checks for quoted strings
+        {
+            char *temp = lexer->cur + 1;
+            while (*temp != '\0' && *temp != '\'')
+                temp++;
+            if (*temp == '\'')
+            {
+                lexer->cur++;
+                lexer->start = lexer->cur;
+                while (*lexer->cur != '\'')
+                    lexer->cur++;
+                int len = lexer->cur - lexer->start;
+                char *word = malloc(len + 1);
+                strncpy(word, lexer->start, len);
+                word[len] = '\0';
+                add_token(lexer, TOKEN_WORD, word);
+                lexer->cur++;
+                continue;
+            }
+        }
+
         while(*lexer->cur != '\0' && !isspace(*lexer->cur)) // finding end of word
             lexer->cur++;
         int len = lexer->cur - lexer->start; //size of the token
