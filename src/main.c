@@ -14,6 +14,7 @@
 
 #include "lexer.h"
 #include "parser.h"
+#include "builtin.h"
 
 int main()
 {
@@ -26,24 +27,18 @@ int main()
             break;
         Lexer lexer = {.start = ch,.cur = ch,.tokens = NULL,.tok_count = 0,.capacity = 0};
         lex(&lexer);
-        printf("-----LEXER OUTPUT-----\n");
-        for (int i = 0; i < lexer.tok_count; i++)
-        {
-            printf("%s",token_to_string(lexer.tokens[i].type));
-            if (lexer.tokens[i].val != NULL)
-                printf(" -> %s",lexer.tokens[i].val);
-            printf("\n");
-        }
         Parser parser = init(lexer.tokens);
         Command *cmd = parse_command(&parser);
-        printf("-----PARSER OUTPUT-----\n");
-        if (cmd->name != NULL)
-            printf("Command: %s\n", cmd->name);
-        printf("argc: %d\n", cmd->argc);
-        for (int i = 0; i < cmd->argc; i++)
+        
+        if (strcmp(cmd->name, "echo") == 0)
         {
-            printf("argv[%d] = %s\n", i, cmd->argv[i]);
+            run_echo(cmd);
         }
+        else
+        {
+            printf("%s: not a valid command in shellG\n",cmd->name);
+        }
+
         free_command(cmd);
         free_lexer(&lexer);
     }
