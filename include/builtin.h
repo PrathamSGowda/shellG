@@ -1,3 +1,11 @@
+/*********************************************/
+/*                                           */
+/*  builtin.h                                */
+/*                                           */
+/*  By: Pratham <prathampsg2007@gmail.com>   */                               
+/*                                           */
+/*  Created: 18/04/2026 by Pratham           */
+/*                                           */
 #ifndef BUILTIN_H
 #define BUILTIN_H
 

@@ -27,7 +27,7 @@ int lex(Lexer *lexer)
             break;
         lexer->start = lexer->cur;
 
-        if (*lexer->cur == '\'')    // checks for quoted strings
+        if(*lexer->cur == '\'')    // checks for quoted strings
         {
             char *temp = lexer->cur + 1;
             while (*temp != '\0' && *temp != '\'')

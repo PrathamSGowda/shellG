@@ -5,7 +5,6 @@
 /*  By: Pratham <prathampsg2007@gmail.com>   */                               
 /*                                           */
 /*  Created: 17/04/2026 by Pratham           */
-/*  Updated: 03/06/2026 by Pratham           */
 /*                                           */
 /*********************************************/
 
@@ -29,10 +28,23 @@ int main()
         lex(&lexer);
         Parser parser = init(lexer.tokens);
         Command *cmd = parse_command(&parser);
+
         
-        if (strcmp(cmd->name, "echo") == 0)
+        if(strcmp(cmd->name, "type") == 0)
+        {
+            run_type(cmd);
+        }
+        else if(strcmp(cmd->name, "echo") == 0)
         {
             run_echo(cmd);
+        }
+        else if(strcmp(cmd->name, "pwd") == 0)
+        {
+            run_pwd();
+        }
+        else if(strcmp(cmd->name, "cd") == 0)
+        {
+            run_cd(cmd);
         }
         else
         {
